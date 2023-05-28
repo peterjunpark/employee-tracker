@@ -18,7 +18,3 @@ VALUES (1, "John", "Doe", 1, NULL),
        (4, "Emily", "Davis", 3, NULL),
        (5, "David", "Brown", 3, 4);
 
-SELECT * FROM department;
-SELECT * FROM role;
-SELECT * FROM employee;
-
