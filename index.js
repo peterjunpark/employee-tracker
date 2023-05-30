@@ -16,8 +16,8 @@ const questions = [
       { name: "Add a role", value: new RoleQuery("insert") },
       { name: "Add an employee", value: new EmplQuery("insert") },
       new inquirer.Separator(),
-      // { name: "Update an employee's role", value: new EmplUpdate() },
-      // new inquirer.Separator(),
+      { name: "Update an employee's role", value: new EmplQuery("update") },
+      new inquirer.Separator(),
     ],
   },
   {
@@ -76,6 +76,18 @@ const questions = [
     when: (answers) =>
       answers.query instanceof EmplQuery && answers.query.type === "insert",
   },
+  {
+    name: "emplUpdateId",
+    type: "input",
+    message: "Enter the employee's ID:",
+    when: (answers) => answers.query instanceof EmplQuery && answers.query.type === "update"
+  },
+  {
+    name: "emplUpdateRole",
+    type: "input",
+    message: "Enter the id of the employee's new role:",
+    when: (answers) => answers.query instanceof EmplQuery && answers.query.type === "update"
+  }
 ];
 
 async function prompt() {
@@ -83,6 +95,9 @@ async function prompt() {
     const { query, ...data } = await inquirer.prompt(questions);
     if (query.type === "insert") {
       await query.insert(data);
+      console.log("Success!");
+    } else if (query instanceof EmplQuery && query.type === "update") {
+      await query.updateRole(data);
       console.log("Success!");
     }
     // Show table.
