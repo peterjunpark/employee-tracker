@@ -1,10 +1,16 @@
-const mysql = require("mysql2");
+require("dotenv").config();
+const mysql = require("mysql2/promise");
 
-const connection = mysql.createConnection({
-    host: "localhost",
+async function connect() {
+  const connection = await mysql.createConnection({
+    host: "127.0.0.1",
     user: process.env.MYSQLUSER,
     password: process.env.MYSQLPASSWORD,
-    database: "employees_db",
+    database: process.env.MYSQLDB,
   });
 
-  module.exports = connection;
+  return connection;
+}
+
+
+module.exports = connect;

@@ -1,16 +1,17 @@
 const inquirer = require("inquirer");
-const { ViewTask } = require("./lib/Task.js");
+const { DeptQuery, RoleQuery, EmplQuery } = require("./lib/Query.js");
+require("console.table");
 
 console.log("\x1b[1;32m --- Employee Tracker --- ");
 const questions = [
   {
-    name: "task",
+    name: "query",
     type: "list",
     message: "Choose a task:",
     choices: [
-      { name: "View all departments", value: new ViewTask("department") },
-      { name: "View all roles", value: new ViewTask("role") },
-      { name: "View all employees", value: new ViewTask("employee") },
+      { name: "View all departments", value: new DeptQuery() },
+      { name: "View all roles", value: new RoleQuery() },
+      { name: "View all employees", value: new EmplQuery("employee") },
       // {
       //   name: "View employees by department",
       //   value: "view@employee@department",
@@ -42,16 +43,14 @@ const questions = [
   },
 ];
 
-inquirer.prompt(questions).then(({ task }) => {
-  switch (task.type) {
-    case "view":
-      task.viewTable();
-      break;
-    case "add":
-    case "update":
-    case "delete":
-      console.log("not implemented");
-    default:
-      throw new Error("Invalid task type.")
+async function prompt() {
+  try {
+    const { query }= await inquirer.prompt(questions);
+    const results = await query.select();
+    console.table(results);
+  } catch (err) {
+    console.error(err);
   }
-});
+}
+
+prompt();
