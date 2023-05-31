@@ -8,7 +8,7 @@ A simple CMS application that runs in your command line — to help you keep tra
 
 
 ### How does it work?
-The Employee Tracker uses a MySQL database and Inquirer.js to receive commands and perform appropriate CRUD operations on your data.
+The Employee Tracker uses a MySQL database (via mysql2) and Inquirer to receive commands and perform appropriate CRUD operations on your data.
 
 ## Installation and Usage
 1. Install the necessary dependencies: Node.js, MySQL.
