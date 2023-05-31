@@ -17,6 +17,8 @@ The Employee Tracker uses a MySQL database (via mysql2) and Inquirer to receive 
 4. Enter `node index.js` in the command line to start the application.
 5. Follow the prompts.
 
+### [Video walkthrough](https://www.youtube.com/watch?v=tKL2GlQuASw)
+
 ## Contributing
 N/A
 
