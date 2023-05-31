@@ -21,7 +21,7 @@ The Employee Tracker uses a MySQL database and Inquirer.js to receive commands a
 N/A
 
 ## License
-N/A
+See LICENSE in repo.
 
 ## Questions
 If you have any additional questions, please reach out to me via email at [peterjpark@pm.me](mailto:peterjpark@pm.me).
